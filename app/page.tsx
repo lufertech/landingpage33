@@ -99,7 +99,7 @@ function HeroSection() {
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid gap-6 lg:grid-cols-[1fr_350px] lg:gap-12 xl:grid-cols-[1fr_400px]">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-[1fr_350px] lg:gap-12 xl:grid-cols-[1fr_400px]">
           <AnimatedSection animation="slide-left" className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-normal tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
@@ -117,12 +117,16 @@ function HeroSection() {
                 </Link>
               </Button>
             </div>
-
-            {/* Removed the bubbles and text about 500 businesses */}
           </AnimatedSection>
-          <AnimatedSection animation="slide-right" delay={300} className="hidden lg:flex items-center justify-center">
-            <div className="w-full max-w-[280px] relative">
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-blue-300 rounded-full opacity-20 animate-pulse-slow"></div>
+
+          {/* Modificado para mostrar en móviles */}
+          <AnimatedSection
+            animation="slide-right"
+            delay={300}
+            className="flex items-center justify-center mt-8 lg:mt-0"
+          >
+            <div className="w-full max-w-[200px] lg:max-w-[280px] relative">
+              <div className="absolute -bottom-4 -right-4 w-12 lg:w-16 h-12 lg:h-16 bg-blue-300 rounded-full opacity-20 animate-pulse-slow"></div>
               <Image
                 src="/images/whatsapp-mockup.png"
                 width={400}
@@ -207,13 +211,14 @@ function ProblemSolutionSection() {
             </div>
 
             <AnimatedSection animation="slide-right" delay={400} className="flex items-center justify-center">
-              <div className="relative">
+              <div className="relative bg-gray-200 rounded-lg overflow-hidden">
                 <Image
                   src="/images/stressed-woman.png"
                   alt="Mujer estresada por la gestión manual de turnos"
                   width={300}
                   height={300}
-                  className="rounded-lg shadow-lg hover-scale image-shadow relative z-10"
+                  className="rounded-lg shadow-lg hover-scale image-shadow relative z-10 w-full h-auto"
+                  loading="eager"
                 />
               </div>
             </AnimatedSection>
@@ -221,13 +226,14 @@ function ProblemSolutionSection() {
 
           <div className="grid gap-8 md:grid-cols-2 mt-12">
             <AnimatedSection animation="slide-left" delay={500} className="flex items-center justify-center">
-              <div className="relative">
+              <div className="relative bg-gray-200 rounded-lg overflow-hidden">
                 <Image
                   src="/images/secretary-phone.png"
                   alt="Secretaria atendiendo llamadas y gestionando turnos"
                   width={300}
                   height={300}
-                  className="rounded-lg shadow-lg hover-scale image-shadow relative z-10"
+                  className="rounded-lg shadow-lg hover-scale image-shadow relative z-10 w-full h-auto"
+                  loading="eager"
                 />
               </div>
             </AnimatedSection>
@@ -306,7 +312,7 @@ function TargetAudienceSection() {
         <div className="mx-auto max-w-5xl py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatedSection delay={100} className="flex flex-col gap-4 group">
-              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative">
+              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative bg-gray-200">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                 <Image
                   src="/images/hair-salon-wash.png"
@@ -314,6 +320,7 @@ function TargetAudienceSection() {
                   width={400}
                   height={300}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
                 />
                 <div className="absolute bottom-0 left-0 p-4 z-20">
                   <h3 className="text-xl font-normal text-white">💇 Peluquerías y salones de belleza</h3>
@@ -322,14 +329,15 @@ function TargetAudienceSection() {
             </AnimatedSection>
 
             <AnimatedSection delay={200} className="flex flex-col gap-4 group">
-              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative">
+              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative bg-gray-200">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                 <Image
                   src="/images/beauty-salon.png"
-                  alt="Salón de belleza"
+                  alt="Manicuría y pedicuría"
                   width={400}
                   height={300}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
                 />
                 <div className="absolute bottom-0 left-0 p-4 z-20">
                   <h3 className="text-xl font-normal text-white">💅 Manicuría y pedicuría</h3>
@@ -338,7 +346,7 @@ function TargetAudienceSection() {
             </AnimatedSection>
 
             <AnimatedSection delay={300} className="flex flex-col gap-4 group">
-              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative">
+              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative bg-gray-200">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                 <Image
                   src="/images/medical-laptop.png"
@@ -346,6 +354,7 @@ function TargetAudienceSection() {
                   width={400}
                   height={300}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
                 />
                 <div className="absolute bottom-0 left-0 p-4 z-20">
                   <h3 className="text-xl font-normal text-white">🏥 Consultorios médicos y odontológicos</h3>
@@ -492,6 +501,7 @@ function DashboardSection() {
                 width={1200}
                 height={600}
                 className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="eager"
               />
             </div>
           </AnimatedSection>
@@ -521,6 +531,7 @@ function DashboardSection() {
                 width={1200}
                 height={600}
                 className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="eager"
               />
             </div>
           </AnimatedSection>
