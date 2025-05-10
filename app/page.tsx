@@ -149,7 +149,7 @@ function StatsCounterSection() {
   return (
     <section className="w-full py-12 bg-white relative z-10 -mt-8">
       <div className="container px-4 md:px-6">
-        <div className="mx-auto max-w-5xl -mt-16 relative z-20">
+        <div className="mx-auto max-w-5xl -mt-16 md:-mt-16 pt-16 md:pt-0 relative z-20">
           <AnimatedSection delay={100}>
             <StatsSection />
           </AnimatedSection>
@@ -316,7 +316,7 @@ function TargetAudienceSection() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 p-4 z-20">
-                  <h3 className="text-xl font-normal text-white">💇 Peluquerías y centros de estética</h3>
+                  <h3 className="text-xl font-normal text-white">💇 Peluquerías y salones de belleza</h3>
                 </div>
               </div>
             </AnimatedSection>
@@ -332,7 +332,7 @@ function TargetAudienceSection() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute bottom-0 left-0 p-4 z-20">
-                  <h3 className="text-xl font-normal text-white">💆 Centros de estética y spa</h3>
+                  <h3 className="text-xl font-normal text-white">💅 Manicuría y pedicuría</h3>
                 </div>
               </div>
             </AnimatedSection>
