@@ -41,7 +41,7 @@ export function MobileNav() {
       </Button>
 
       {isOpen && (
-        <div className="fixed inset-0 top-16 z-50 bg-background p-6 animate-in fade-in slide-in-from-top-5">
+        <div className="fixed inset-0 top-16 z-50 bg-white p-6 animate-in fade-in slide-in-from-top-5 shadow-lg">
           <nav className="flex flex-col gap-6">
             <Link
               href="#problemas"

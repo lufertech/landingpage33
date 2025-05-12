@@ -100,18 +100,17 @@ export function CostComparisonChart() {
       drawLabel(humanPercentage, humanCost, humanColor, humanLabelAngle, true)
       drawLabel(chatbotPercentage, chatbotCost, chatbotColor, chatbotLabelAngle, false)
 
-      // Draw savings indicator
+      // Draw savings indicator - Ajustado para que esté más abajo
       const savings = humanCost - chatbotCost
       const savingsPercentage = Math.round((savings / humanCost) * 100)
 
       ctx.fillStyle = "#10b981"
       ctx.font = `${isMobile ? "normal 14px" : "bold 16px"} Inter, sans-serif`
       ctx.textAlign = "center"
-      ctx.fillText(
-        `Ahorro: $${savings.toLocaleString("es-AR")} (${savingsPercentage}%)`,
-        rect.width / 2,
-        rect.height - (isMobile ? 10 : 20),
-      )
+
+      // Posición ajustada para que esté más abajo, especialmente en móviles
+      const savingsY = isMobile ? rect.height - 5 : rect.height - 20
+      ctx.fillText(`Ahorro: $${savings.toLocaleString("es-AR")} (${savingsPercentage}%)`, rect.width / 2, savingsY)
     }
 
     // Dibujar el gráfico inicialmente
