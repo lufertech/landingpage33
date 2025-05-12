@@ -41,7 +41,7 @@ export function MobileNav() {
       </Button>
 
       {isOpen && (
-        <div className="fixed inset-0 top-0 left-0 right-0 bottom-0 z-50 bg-white animate-in fade-in">
+        <div className="fixed inset-0 top-16 z-50 bg-white shadow-lg" style={{ backgroundColor: "white" }}>
           <div className="flex justify-between items-center p-4 border-b">
             <div className="flex items-center gap-2">
               <span className="text-xl font-normal">Lufer Tecnología</span>
