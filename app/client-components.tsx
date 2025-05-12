@@ -41,8 +41,22 @@ export function MobileNav() {
       </Button>
 
       {isOpen && (
-        <div className="fixed inset-0 top-16 z-50 bg-white p-6 animate-in fade-in slide-in-from-top-5 shadow-lg">
-          <nav className="flex flex-col gap-6">
+        <div className="fixed inset-0 top-0 left-0 right-0 bottom-0 z-50 bg-white animate-in fade-in">
+          <div className="flex justify-between items-center p-4 border-b">
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-normal">Lufer Tecnología</span>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(false)}
+              className="transition-transform duration-200 hover:scale-110"
+            >
+              <X className="h-5 w-5" />
+              <span className="sr-only">Cerrar menú</span>
+            </Button>
+          </div>
+          <nav className="flex flex-col gap-6 p-6">
             <Link
               href="#problemas"
               className="text-lg font-light hover:text-primary transition-colors"
