@@ -110,43 +110,48 @@ function Header() {
 function HeroSection() {
   return (
     <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Fondo minimalista */}
+      {/* Fondo azul */}
       <div className="absolute inset-0 bg-navy"></div>
 
-      {/* Elementos decorativos minimalistas */}
+      {/* Elementos decorativos sutiles */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full"></div>
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1fr_400px] lg:gap-16 xl:grid-cols-[1fr_450px] items-center">
-          <AnimatedSection animation="slide-left" className="flex flex-col justify-center space-y-8">
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1fr_700px] lg:gap-0 xl:grid-cols-[1fr_800px] items-end min-h-[80vh]">
+          <AnimatedSection animation="slide-left" className="flex flex-col justify-center space-y-8 pb-16">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-light">
-                <div className="status-dot"></div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/90 text-sm font-light">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
                 <span>Automatización inteligente 24/7</span>
               </div>
 
-              <h1 className="text-4xl font-extralight tracking-tight sm:text-5xl xl:text-6xl text-white">
+              <h1 className="text-4xl font-light tracking-tight sm:text-5xl xl:text-6xl text-white leading-tight">
                 Tu asistente virtual que agenda turnos sin errores
               </h1>
 
-              <p className="max-w-[600px] text-white/80 text-xl font-light leading-relaxed">
-                Atendé a tus pacientes o clientes automáticamente por WhatsApp.
-                <span className="text-white"> Sin llamadas, sin excusas.</span>
+              <p className="max-w-[600px] text-white/90 text-xl font-light leading-relaxed">
+                Atendé a tus pacientes o clientes automáticamente por WhatsApp.{" "}
+                <span className="text-white font-medium">Sin llamadas, sin excusas.</span>
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="btn-minimal text-white border-0">
+              <Button asChild size="lg" className="btn-minimal text-white border-0 text-base px-8 py-3">
                 <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
                   Quiero el chatbot ahora
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
 
-              <Button asChild size="lg" variant="outline" className="btn-outline-minimal text-white">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="btn-outline-minimal text-white text-base px-8 py-3"
+              >
                 <Link href="#beneficios" className="flex items-center gap-2">
                   Ver beneficios
                   <ChevronRight className="h-4 w-4" />
@@ -155,27 +160,17 @@ function HeroSection() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection animation="slide-right" delay={300} className="flex items-center justify-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-white/5 rounded-2xl blur-xl"></div>
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
-                <Image
-                  src="/images/whatsapp-mockup.png"
-                  width={400}
-                  height={800}
-                  alt="Chatbot de Lufer Tecnología en WhatsApp"
-                  className="w-full max-w-[280px] h-auto rounded-xl"
-                  priority
-                />
-
-                {/* Status indicator minimalista */}
-                <div className="absolute -bottom-2 -right-2 bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
-                  <div className="flex items-center gap-2">
-                    <div className="status-dot"></div>
-                    <span className="text-xs font-light text-white">Activo 24/7</span>
-                  </div>
-                </div>
-              </div>
+          <AnimatedSection animation="slide-right" delay={300} className="flex items-end justify-end h-full">
+            <div className="relative h-full flex items-end">
+              <Image
+                src="/images/whatsapp-phone-clean.png"
+                width={800}
+                height={1200}
+                alt="Chatbot de Lufer Tecnología en WhatsApp"
+                className="w-full max-w-[800px] h-auto object-contain"
+                priority
+                style={{ marginBottom: "-5px" }}
+              />
             </div>
           </AnimatedSection>
         </div>
