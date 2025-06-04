@@ -1,10 +1,21 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Instagram, Youtube, CheckCircle, BarChart3, Check, X, Shield, ArrowRight, ChevronRight } from "lucide-react"
+import {
+  Instagram,
+  Youtube,
+  BarChart3,
+  Check,
+  X,
+  Shield,
+  ArrowRight,
+  ChevronRight,
+  Clock,
+  DollarSign,
+  CheckCircle,
+  Calendar,
+} from "lucide-react"
 import { MobileNav, AnimatedSection, ScrollToTop } from "./client-components"
-import { CostComparisonChart } from "../components/cost-comparison-chart"
-import { StatsSection } from "../components/stats-section"
 import { FeaturesGrid } from "../components/features-grid"
 
 // URL para todos los botones CTA
@@ -16,15 +27,12 @@ export default function LandingPage() {
       <Header />
       <main>
         <HeroSection />
-        <StatsCounterSection />
+        <BenefitsHighlightSection />
         <ProblemSolutionSection />
         <TargetAudienceSection />
-        <BenefitsSection />
-        <CostComparisonSection />
-        {/* Sección de testimonios eliminada */}
+        <FeaturesSection />
         <GuaranteeSection />
         <DashboardSection />
-        <PricingSection />
         <ContactSection />
       </main>
       <Footer />
@@ -35,49 +43,60 @@ export default function LandingPage() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full navbar-glass border-b border-gray-100">
       <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%207-VEkkzzHjmIagP4YOM97SRcuzyyXdcF.png"
             alt="Logo de Lufer Tecnología"
-            width={40}
-            height={40}
-            className="hover-scale"
+            width={36}
+            height={36}
+            className="hover-translate"
           />
-          <span className="text-xl font-normal">Lufer Tecnología</span>
+          <span className="text-xl font-light text-navy">Lufer Tecnología</span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="#problemas" className="text-sm font-normal hover:text-primary transition-colors relative group">
-            Problemas
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link href="#para-quien" className="text-sm font-normal hover:text-primary transition-colors relative group">
-            ¿Para quién?
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link href="#beneficios" className="text-sm font-normal hover:text-primary transition-colors relative group">
+        <nav className="hidden md:flex items-center gap-8">
+          <Link
+            href="#beneficios"
+            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
+          >
             Beneficios
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link href="#dashboard" className="text-sm font-normal hover:text-primary transition-colors relative group">
+          <Link
+            href="#problemas"
+            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
+          >
+            Problemas
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link
+            href="#para-quien"
+            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
+          >
+            ¿Para quién?
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link
+            href="#dashboard"
+            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
+          >
             Dashboard
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
           </Link>
-          <Link href="#precios" className="text-sm font-normal hover:text-primary transition-colors relative group">
-            Precios
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link href="#contacto" className="text-sm font-normal hover:text-primary transition-colors relative group">
+          <Link
+            href="#contacto"
+            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
+          >
             Contacto
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button asChild size="sm" className="hidden md:flex cta-button font-normal">
-            <Link href={CALENDAR_URL} target="_blank">
+          <Button asChild className="hidden md:flex btn-minimal text-white">
+            <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
               Quiero el chatbot ahora
             </Link>
           </Button>
@@ -90,55 +109,71 @@ function Header() {
 
 function HeroSection() {
   return (
-    <section className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-primary/80"></div>
+    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* Fondo minimalista */}
+      <div className="absolute inset-0 bg-navy"></div>
 
-      {/* Decorative elements - simplified for minimalism */}
+      {/* Elementos decorativos minimalistas */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full"></div>
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid gap-6 grid-cols-1 lg:grid-cols-[1fr_350px] lg:gap-12 xl:grid-cols-[1fr_400px]">
-          <AnimatedSection animation="slide-left" className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-normal tracking-tighter sm:text-5xl xl:text-6xl/none text-white">
-                Tu nuevo asistente virtual que agenda turnos 24/7 sin errores ni demoras
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1fr_400px] lg:gap-16 xl:grid-cols-[1fr_450px] items-center">
+          <AnimatedSection animation="slide-left" className="flex flex-col justify-center space-y-8">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-light">
+                <div className="status-dot"></div>
+                <span>Automatización inteligente 24/7</span>
+              </div>
+
+              <h1 className="text-4xl font-extralight tracking-tight sm:text-5xl xl:text-6xl text-white">
+                Tu asistente virtual que agenda turnos sin errores
               </h1>
-              <p className="max-w-[600px] text-white/80 md:text-xl font-light">
-                💬 Atendé a tus pacientes o clientes automáticamente por WhatsApp, sin llamadas, sin excusas.
+
+              <p className="max-w-[600px] text-white/80 text-xl font-light leading-relaxed">
+                Atendé a tus pacientes o clientes automáticamente por WhatsApp.
+                <span className="text-white"> Sin llamadas, sin excusas.</span>
               </p>
             </div>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button asChild size="lg" variant="secondary" className="font-normal cta-button animate-pulse-slow group">
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild size="lg" className="btn-minimal text-white border-0">
                 <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
                   Quiero el chatbot ahora
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+
+              <Button asChild size="lg" variant="outline" className="btn-outline-minimal text-white">
+                <Link href="#beneficios" className="flex items-center gap-2">
+                  Ver beneficios
+                  <ChevronRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </AnimatedSection>
 
-          {/* Modificado para mostrar en móviles */}
-          <AnimatedSection
-            animation="slide-right"
-            delay={300}
-            className="flex items-center justify-center mt-8 lg:mt-0"
-          >
-            <div className="w-full max-w-[200px] lg:max-w-[280px] relative">
-              <div className="absolute -bottom-4 -right-4 w-12 lg:w-16 h-12 lg:h-16 bg-blue-300 rounded-full opacity-20 animate-pulse-slow"></div>
-              <Image
-                src="/images/whatsapp-mockup.png"
-                width={400}
-                height={800}
-                alt="Chatbot de Lufer Tecnología en WhatsApp"
-                className="w-full h-auto rounded-xl shadow-xl hover-scale relative z-10"
-                priority
-              />
-              <div className="absolute -bottom-2 -right-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  <span className="text-xs font-light">Activo 24/7</span>
+          <AnimatedSection animation="slide-right" delay={300} className="flex items-center justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-white/5 rounded-2xl blur-xl"></div>
+              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <Image
+                  src="/images/whatsapp-mockup.png"
+                  width={400}
+                  height={800}
+                  alt="Chatbot de Lufer Tecnología en WhatsApp"
+                  className="w-full max-w-[280px] h-auto rounded-xl"
+                  priority
+                />
+
+                {/* Status indicator minimalista */}
+                <div className="absolute -bottom-2 -right-2 bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                  <div className="flex items-center gap-2">
+                    <div className="status-dot"></div>
+                    <span className="text-xs font-light text-white">Activo 24/7</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,15 +184,61 @@ function HeroSection() {
   )
 }
 
-function StatsCounterSection() {
+function BenefitsHighlightSection() {
+  const keyBenefits = [
+    {
+      icon: Clock,
+      title: "Más tiempo libre",
+      description: "Automatizá tareas repetitivas y enfocate en lo que realmente importa para tu negocio.",
+    },
+    {
+      icon: DollarSign,
+      title: "Menos costos",
+      description: "Reducí gastos de personal administrativo y optimizá tus recursos.",
+    },
+    {
+      icon: X,
+      title: "Menos errores",
+      description: "Eliminá confusiones en la agenda y superposiciones de turnos.",
+    },
+    {
+      icon: CheckCircle,
+      title: "Más turnos confirmados",
+      description: "Aumentá la tasa de asistencia con recordatorios automáticos.",
+    },
+  ]
+
   return (
-    <section className="w-full py-12 bg-white relative z-10 -mt-8">
-      <div className="container px-4 md:px-6">
-        <div className="mx-auto max-w-5xl -mt-16 md:-mt-16 pt-16 md:pt-0 relative z-20">
-          <AnimatedSection delay={100}>
-            <StatsSection />
-          </AnimatedSection>
+    <section id="beneficios" className="section-container bg-white">
+      <div className="container-tight">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-sm font-light text-navy uppercase tracking-wider">Beneficios principales</span>
+          <h2 className="text-3xl font-light text-navy mt-2 mb-4">
+            Optimizá tu negocio con nuestro chatbot inteligente
+          </h2>
+          <div className="divider mx-auto"></div>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {keyBenefits.map((benefit, index) => (
+            <AnimatedSection key={index} delay={index * 100} className="card-minimal">
+              <div className="icon-box-primary mb-6">
+                <benefit.icon className="h-5 w-5" />
+              </div>
+              <h3 className="text-xl font-light text-navy mb-3">{benefit.title}</h3>
+              <p className="text-gray-600 text-sm">{benefit.description}</p>
+            </AnimatedSection>
+          ))}
         </div>
+
+        <AnimatedSection delay={500} className="mt-16 text-center">
+          <Button asChild className="btn-minimal text-white">
+            <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
+              Empezá a optimizar tu negocio
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </AnimatedSection>
       </div>
     </section>
   )
@@ -165,124 +246,91 @@ function StatsCounterSection() {
 
 function ProblemSolutionSection() {
   return (
-    <section id="problemas" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-      <div className="container px-4 md:px-6">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light"></div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">
-              Automatizá tu gestión de turnos y olvidate de los problemas
-            </h2>
-          </div>
+    <section id="problemas" className="section-container bg-gray-50">
+      <div className="container-tight">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-sm font-light text-navy uppercase tracking-wider">Problemas y soluciones</span>
+          <h2 className="text-3xl font-light text-navy mt-2 mb-4">Automatizá tu gestión de turnos</h2>
+          <div className="divider mx-auto"></div>
         </AnimatedSection>
 
-        <div className="mx-auto max-w-5xl">
-          <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-16">
+          <div className="grid gap-8 md:grid-cols-2 items-center">
             <div className="space-y-6">
-              <AnimatedSection
-                delay={100}
-                className="flex items-start gap-4 rounded-lg border p-6 shadow-sm hover-lift bg-white/80 backdrop-blur-sm"
-              >
-                <X className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                <p className="text-xl font-normal text-left">
-                  ¿Recibís muchos mensajes y no tenés tiempo para responder?
-                </p>
-              </AnimatedSection>
-
-              <AnimatedSection
-                delay={200}
-                className="flex items-start gap-4 rounded-lg border p-6 shadow-sm hover-lift bg-white/80 backdrop-blur-sm"
-              >
-                <X className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                <p className="text-xl font-normal text-left">
-                  ¿Perdés clientes por no responder los mensajes a tiempo?
-                </p>
-              </AnimatedSection>
-
-              <AnimatedSection
-                delay={300}
-                className="flex items-start gap-4 rounded-lg border p-6 shadow-sm hover-lift bg-white/80 backdrop-blur-sm"
-              >
-                <X className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                <p className="text-xl font-normal text-left">
-                  ¿Te sale caro mantener una persona solo para responder los mensajes?
-                </p>
-              </AnimatedSection>
+              {[
+                "¿Recibís muchos mensajes y no tenés tiempo para responder?",
+                "¿Perdés clientes por no responder los mensajes a tiempo?",
+                "¿Te sale caro mantener una persona solo para responder los mensajes?",
+              ].map((problem, index) => (
+                <AnimatedSection key={index} delay={100 * (index + 1)} className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-50 flex items-center justify-center">
+                    <X className="h-4 w-4 text-red-500" />
+                  </div>
+                  <p className="text-gray-700 font-light">{problem}</p>
+                </AnimatedSection>
+              ))}
             </div>
 
-            <AnimatedSection animation="slide-right" delay={400} className="flex items-center justify-center">
-              <div className="relative bg-gray-200 rounded-lg overflow-hidden">
+            <AnimatedSection animation="slide-right" delay={400} className="flex justify-center">
+              <div className="relative">
                 <Image
                   src="/images/stressed-woman.png"
                   alt="Mujer estresada por la gestión manual de turnos"
-                  width={300}
-                  height={300}
-                  className="rounded-lg shadow-lg hover-scale image-shadow relative z-10 w-full h-auto"
+                  width={400}
+                  height={400}
+                  className="rounded-lg w-full h-auto"
                   loading="eager"
                 />
               </div>
             </AnimatedSection>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 mt-12">
-            <AnimatedSection animation="slide-left" delay={500} className="flex items-center justify-center">
-              <div className="relative bg-gray-200 rounded-lg overflow-hidden">
+          <div className="grid gap-8 md:grid-cols-2 items-center">
+            <AnimatedSection animation="slide-left" delay={500} className="flex justify-center md:order-1">
+              <div className="relative">
                 <Image
                   src="/images/secretary-phone.png"
                   alt="Secretaria atendiendo llamadas y gestionando turnos"
-                  width={300}
-                  height={300}
-                  className="rounded-lg shadow-lg hover-scale image-shadow relative z-10 w-full h-auto"
+                  width={400}
+                  height={400}
+                  className="rounded-lg w-full h-auto"
                   loading="eager"
                 />
               </div>
             </AnimatedSection>
 
-            <div className="space-y-6">
-              <AnimatedSection
-                delay={600}
-                className="flex items-start gap-4 rounded-lg border p-6 shadow-sm hover-lift bg-white/80 backdrop-blur-sm"
-              >
-                <X className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                <p className="text-xl font-normal text-left">¿Tus clientes se olvidan los turnos o no confirman?</p>
-              </AnimatedSection>
-
-              <AnimatedSection
-                delay={700}
-                className="flex items-start gap-4 rounded-lg border p-6 shadow-sm hover-lift bg-white/80 backdrop-blur-sm"
-              >
-                <X className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                <p className="text-xl font-normal text-left">¿Seguís anotando todo en papel o Excel?</p>
-              </AnimatedSection>
+            <div className="space-y-6 md:order-2">
+              {["¿Tus clientes se olvidan los turnos o no confirman?", "¿Seguís anotando todo en papel o Excel?"].map(
+                (problem, index) => (
+                  <AnimatedSection key={index} delay={600 + 100 * index} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-50 flex items-center justify-center">
+                      <X className="h-4 w-4 text-red-500" />
+                    </div>
+                    <p className="text-gray-700 font-light">{problem}</p>
+                  </AnimatedSection>
+                ),
+              )}
             </div>
           </div>
 
-          <AnimatedSection
-            delay={800}
-            className="mt-12 rounded-xl bg-primary/5 p-8 border border-primary/20 hover-lift"
-          >
-            <h3 className="text-2xl font-normal mb-6">✅ Con nuestro chatbot inteligente:</h3>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="flex items-start gap-3">
-                <Check className="h-6 w-6 text-green-500 mt-1" />
-                <p className="text-lg font-light">Automatizás la reserva de turnos 24/7</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check className="h-6 w-6 text-green-500 mt-1" />
-                <p className="text-lg font-light">Reducís cancelaciones con recordatorios automáticos</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check className="h-6 w-6 text-green-500 mt-1" />
-                <p className="text-lg font-light">Integrás con Google Calendar o tu sistema actual</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check className="h-6 w-6 text-green-500 mt-1" />
-                <p className="text-lg font-light">Todo desde WhatsApp, Facebook, Instagram o tu web</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Check className="h-6 w-6 text-green-500 mt-1" />
-                <p className="text-lg font-light">Más tiempo libre para otras tareas en tu negocio</p>
-              </div>
+          <AnimatedSection delay={800} className="card-minimal bg-gray-50 border border-gray-200">
+            <h3 className="text-xl font-light text-navy mb-6">Con nuestro chatbot inteligente:</h3>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                "Automatizás la reserva de turnos 24/7",
+                "Reducís cancelaciones con recordatorios automáticos",
+                "Integrás con Google Calendar o tu sistema actual",
+                "Todo desde WhatsApp, Facebook, Instagram o tu web",
+                "Más tiempo libre para otras tareas en tu negocio",
+              ].map((benefit, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-50 flex items-center justify-center">
+                    <Check className="h-3 w-3 text-green-600" />
+                  </div>
+                  <p className="text-gray-700 text-sm font-light">{benefit}</p>
+                </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
@@ -293,95 +341,70 @@ function ProblemSolutionSection() {
 
 function TargetAudienceSection() {
   return (
-    <section id="para-quien" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light">
-              ¿Para quién es esto?
-            </div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">
-              Ideal para negocios que trabajan con turnos
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl font-light">
-              Si tu negocio trabaja con turnos, este chatbot es para vos.
-            </p>
-          </div>
+    <section id="para-quien" className="section-container bg-white">
+      <div className="container-tight">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-sm font-light text-navy uppercase tracking-wider">¿Para quién es esto?</span>
+          <h2 className="text-3xl font-light text-navy mt-2 mb-4">Ideal para negocios que trabajan con turnos</h2>
+          <div className="divider mx-auto"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto">Si tu negocio trabaja con turnos, este chatbot es para vos.</p>
         </AnimatedSection>
 
-        <div className="mx-auto max-w-5xl py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatedSection delay={100} className="flex flex-col gap-4 group">
-              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative bg-gray-200">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              image: "/images/hair-salon-wash.png",
+              title: "Peluquerías y salones de belleza",
+              icon: "💇",
+            },
+            {
+              image: "/images/beauty-salon.png",
+              title: "Manicuría y pedicuría",
+              icon: "💅",
+            },
+            {
+              image: "/images/medical-laptop.png",
+              title: "Consultorios médicos y odontológicos",
+              icon: "🏥",
+            },
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={100 * (index + 1)} className="group">
+              <div className="relative overflow-hidden rounded-lg">
                 <Image
-                  src="/images/hair-salon-wash.png"
-                  alt="Peluquería y salón de belleza"
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.title}
                   width={400}
                   height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-auto aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="eager"
                 />
-                <div className="absolute bottom-0 left-0 p-4 z-20">
-                  <h3 className="text-xl font-normal text-white">💇 Peluquerías y salones de belleza</h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{item.icon}</span>
+                    <h3 className="text-lg font-light text-white">{item.title}</h3>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
-
-            <AnimatedSection delay={200} className="flex flex-col gap-4 group">
-              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative bg-gray-200">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <Image
-                  src="/images/beauty-salon.png"
-                  alt="Manicuría y pedicuría"
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="eager"
-                />
-                <div className="absolute bottom-0 left-0 p-4 z-20">
-                  <h3 className="text-xl font-normal text-white">💅 Manicuría y pedicuría</h3>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={300} className="flex flex-col gap-4 group">
-              <div className="h-64 overflow-hidden rounded-xl shadow-lg transition-all duration-300 group-hover:shadow-xl relative bg-gray-200">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                <Image
-                  src="/images/medical-laptop.png"
-                  alt="Consultorio médico"
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="eager"
-                />
-                <div className="absolute bottom-0 left-0 p-4 z-20">
-                  <h3 className="text-xl font-normal text-white">🏥 Consultorios médicos y odontológicos</h3>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-function BenefitsSection() {
+function FeaturesSection() {
   return (
-    <section id="beneficios" className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light">
-              Beneficios concretos
-            </div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">Ventajas que transformarán tu negocio</h2>
-          </div>
+    <section className="section-container bg-gray-50">
+      <div className="container">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-sm font-light text-navy uppercase tracking-wider">Características</span>
+          <h2 className="text-3xl font-light text-navy mt-2 mb-4">Funcionalidades que transforman tu negocio</h2>
+          <div className="divider mx-auto"></div>
         </AnimatedSection>
 
-        <div className="mx-auto max-w-6xl py-12">
+        <div className="mx-auto max-w-7xl">
           <AnimatedSection delay={100}>
             <FeaturesGrid />
           </AnimatedSection>
@@ -391,63 +414,43 @@ function BenefitsSection() {
   )
 }
 
-function CostComparisonSection() {
-  return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light">
-              Ahorro significativo
-            </div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">Reducí costos y aumentá la eficiencia</h2>
-            <p className="max-w-[800px] text-muted-foreground md:text-xl font-light">
-              Comparativa de costos entre contratar personal y utilizar nuestro chatbot
-            </p>
-          </div>
-        </AnimatedSection>
-
-        <div className="mx-auto max-w-4xl">
-          <AnimatedSection delay={200}>
-            <CostComparisonChart />
-          </AnimatedSection>
-
-          <AnimatedSection delay={300} className="mt-12 text-center">
-            <Button asChild size="lg" className="cta-button font-normal">
-              <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-                Empezá a ahorrar ahora
-                <ChevronRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Sección de testimonios eliminada
-
 function GuaranteeSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-primary/5 relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="mx-auto max-w-3xl text-center">
-          <div className="flex justify-center mb-6">
-            <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-              <Shield className="h-8 w-8 text-primary" />
-            </div>
+    <section className="section-container relative overflow-hidden">
+      <div className="absolute inset-0 bg-navy"></div>
+
+      <div className="container-tight relative z-10">
+        <AnimatedSection className="text-center">
+          <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6">
+            <Shield className="h-8 w-8 text-white" />
           </div>
-          <h2 className="text-3xl font-normal tracking-tighter md:text-4xl mb-4">
-            🔒 Sin riesgos. Probalo gratis y enamorate de tu nuevo asistente virtual.
+
+          <h2 className="text-3xl font-light text-white mb-6">
+            Sin riesgos. Probalo gratis y enamorate de tu nuevo asistente virtual.
           </h2>
-          <p className="text-xl mb-8 font-light">👉 Agendá una demo o pedinos más info ahora mismo.</p>
-          <Button asChild size="lg" className="w-full max-w-md text-lg py-6 cta-button font-normal animate-pulse-slow">
-            <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2 justify-center">
+
+          <p className="text-xl mb-10 text-white/80 font-light">Agendá una demo o pedinos más info ahora mismo.</p>
+
+          <Button asChild size="lg" className="btn-outline-minimal text-white">
+            <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
               Quiero el chatbot ahora
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
+
+          {/* Garantías minimalistas */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+            {[
+              { icon: Shield, text: "Garantía de satisfacción" },
+              { icon: Clock, text: "Implementación rápida" },
+              { icon: Calendar, text: "Soporte continuo" },
+            ].map((item, index) => (
+              <div key={index} className="bg-white/5 rounded-lg p-4 text-center border border-white/10">
+                <item.icon className="h-6 w-6 text-white/80 mx-auto mb-3" />
+                <p className="text-white/80 text-sm font-light">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </AnimatedSection>
       </div>
     </section>
@@ -456,200 +459,84 @@ function GuaranteeSection() {
 
 function DashboardSection() {
   return (
-    <section id="dashboard" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light">Dashboard</div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">
-              Analíticas completas para optimizar tu negocio
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl font-light">
-              Monitoreá el rendimiento de tu chatbot y tomá decisiones basadas en datos reales.
-            </p>
-          </div>
+    <section id="dashboard" className="section-container bg-white">
+      <div className="container-tight">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-sm font-light text-navy uppercase tracking-wider">Dashboard</span>
+          <h2 className="text-3xl font-light text-navy mt-2 mb-4">Analíticas completas para optimizar tu negocio</h2>
+          <div className="divider mx-auto"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Monitoreá el rendimiento de tu chatbot y tomá decisiones basadas en datos reales.
+          </p>
         </AnimatedSection>
-        <div className="mx-auto max-w-5xl py-12">
-          <AnimatedSection className="flex flex-col items-center justify-center space-y-6 mb-8">
-            <p className="text-xl text-center max-w-3xl font-light">
-              Con nuestro chatbot, vas a tener acceso a un dashboard con las principales metricas y informaciones de tus
-              clientes.
-            </p>
-          </AnimatedSection>
 
-          <AnimatedSection
-            animation="scale"
-            className="rounded-xl overflow-hidden shadow-lg border border-gray-200 hover-lift mb-12 group"
-          >
-            <div className="bg-[#2dd4ac] p-4 flex items-center justify-between text-white">
+        <div className="space-y-12">
+          <AnimatedSection animation="scale" className="card-minimal overflow-hidden">
+            <div className="bg-navy p-4 flex items-center justify-between text-white rounded-t-lg">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <BarChart3 className="h-5 w-5 text-white" />
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+                  <BarChart3 className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-normal">Chatbot 2025</p>
+                  <p className="font-light">Chatbot 2025</p>
+                  <p className="text-white/80 text-xs">Analíticas en tiempo real</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="text-sm font-light">Analíticas</div>
+                <div className="status-dot"></div>
+                <span className="text-xs font-light">En vivo</span>
               </div>
             </div>
-            <div className="bg-white relative overflow-hidden">
+
+            <div className="relative overflow-hidden">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20Pantalla%202025-05-09%20a%20la%28s%29%2011.21.17-He3GR9G4vLWEq2YgAh5n4OUZbYSVrT.png"
                 alt="Dashboard de analíticas del chatbot mostrando conversaciones y contactos por país"
                 width={1200}
                 height={600}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                className="w-full h-auto"
                 loading="eager"
               />
             </div>
           </AnimatedSection>
 
-          <AnimatedSection
-            animation="scale"
-            delay={300}
-            className="rounded-xl overflow-hidden shadow-lg border border-gray-200 hover-lift group"
-          >
-            <div className="bg-[#2dd4ac] p-4 flex items-center justify-between text-white">
+          <AnimatedSection animation="scale" delay={300} className="card-minimal overflow-hidden">
+            <div className="bg-navy p-4 flex items-center justify-between text-white rounded-t-lg">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <BarChart3 className="h-5 w-5 text-white" />
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
+                  <BarChart3 className="h-4 w-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-normal">Chatbot 2025</p>
+                  <p className="font-light">Chatbot 2025</p>
+                  <p className="text-white/80 text-xs">Gestión de contactos</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="text-sm font-light">Contactos</div>
+                <div className="status-dot"></div>
+                <span className="text-xs font-light">Sincronizado</span>
               </div>
             </div>
-            <div className="bg-white relative overflow-hidden">
+
+            <div className="relative overflow-hidden">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20Pantalla%202025-05-09%20a%20la%28s%29%2011.22.03-gOxva3zocsZHg0qazbuUdWgGyQbfM4.png"
                 alt="Dashboard de contactos del chatbot mostrando lista de clientes"
                 width={1200}
                 height={600}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                className="w-full h-auto"
                 loading="eager"
               />
             </div>
           </AnimatedSection>
-
-          <AnimatedSection delay={700} className="mt-12 text-center">
-            <p className="text-lg font-light mb-4">
-              Obtené información valiosa sobre el rendimiento de tu chatbot y el comportamiento de tus clientes
-            </p>
-            <Button asChild size="lg" className="cta-button font-normal">
-              <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-                Solicitar acceso al dashboard
-                <ChevronRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </AnimatedSection>
         </div>
-      </div>
-    </section>
-  )
-}
 
-function PricingSection() {
-  return (
-    <section id="precios" className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light">Precios</div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">Inversión transparente</h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl font-light">
-              Precios claros sin costos ocultos. Invertí en la automatización de tu negocio.
-            </p>
-          </div>
-        </AnimatedSection>
-        <div className="mx-auto grid max-w-3xl gap-8 py-12 md:grid-cols-2">
-          <AnimatedSection
-            animation="slide-left"
-            delay={100}
-            className="relative overflow-hidden rounded-xl border bg-background p-8 shadow-lg hover-lift group"
-          >
-            <div className="absolute top-0 right-0 h-20 w-20">
-              <div className="absolute transform rotate-45 bg-primary text-center text-white font-normal py-1 right-[-40px] top-[32px] w-[170px]">
-                Pago único
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-normal">Implementación</h3>
-                <p className="text-muted-foreground font-light">Configuración inicial personalizada</p>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-5xl font-normal">$250.000</span>
-                <span className="text-muted-foreground">ARS</span>
-              </div>
-              <ul className="space-y-2 text-sm font-light">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Configuración personalizada</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Integración con tus plataformas</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Capacitación inicial</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Configuración de respuestas automáticas</span>
-                </li>
-              </ul>
-            </div>
-          </AnimatedSection>
-          <AnimatedSection
-            animation="slide-right"
-            delay={200}
-            className="relative overflow-hidden rounded-xl border bg-background p-8 shadow-lg hover-lift group"
-          >
-            <div className="absolute top-0 right-0 h-20 w-20">
-              <div className="absolute transform rotate-45 bg-primary text-center text-white font-normal py-1 right-[-40px] top-[32px] w-[170px]">
-                Mensual
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-normal">Mantenimiento</h3>
-                <p className="text-muted-foreground font-light">Soporte continuo y actualizaciones</p>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-5xl font-normal">$150.000</span>
-                <span className="text-muted-foreground">ARS/mes</span>
-              </div>
-              <ul className="space-y-2 text-sm font-light">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Soporte técnico prioritario</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Actualizaciones de funcionalidades</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Informes mensuales de rendimiento</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Optimización continua del chatbot</span>
-                </li>
-              </ul>
-            </div>
-          </AnimatedSection>
-        </div>
-        <AnimatedSection delay={300} className="flex justify-center">
-          <Button asChild size="lg" className="mt-4 cta-button font-normal">
+        <AnimatedSection delay={700} className="text-center mt-16">
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto font-light">
+            Obtené información valiosa sobre el rendimiento de tu chatbot y el comportamiento de tus clientes
+          </p>
+          <Button asChild className="btn-minimal text-white">
             <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-              Reservá una reunión informativa
+              Solicitar acceso al dashboard
               <ChevronRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -661,83 +548,81 @@ function PricingSection() {
 
 function ContactSection() {
   return (
-    <section id="contacto" className="w-full py-12 md:py-24 lg:py-32 bg-white relative overflow-hidden">
-      <div className="container px-4 md:px-6 relative z-10">
-        <AnimatedSection className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-white font-light">Contacto</div>
-            <h2 className="text-3xl font-normal tracking-tighter md:text-4xl">Hablemos</h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl font-light">
-              Estamos listos para responder tus preguntas y ayudarte a implementar tu chatbot.
-            </p>
-          </div>
+    <section id="contacto" className="section-container bg-gray-50">
+      <div className="container-tight">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-sm font-light text-navy uppercase tracking-wider">Contacto</span>
+          <h2 className="text-3xl font-light text-navy mt-2 mb-4">Hablemos</h2>
+          <div className="divider mx-auto"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Estamos listos para responder tus preguntas y ayudarte a implementar tu chatbot.
+          </p>
         </AnimatedSection>
-        <div className="mx-auto max-w-5xl gap-8 py-12">
-          <div className="space-y-8 max-w-2xl mx-auto">
-            <AnimatedSection
-              delay={100}
-              animation="slide-left"
-              className="flex items-center gap-4 hover-lift p-4 rounded-lg transition-all duration-300"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                <Instagram className="h-6 w-6 text-primary" />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <AnimatedSection delay={100} animation="slide-left" className="card-minimal">
+            <div className="flex items-center gap-4">
+              <div className="icon-box-primary">
+                <Instagram className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-lg font-normal">Instagram</h3>
-                <p className="text-muted-foreground font-light">
+                <h3 className="text-lg font-light text-navy">Instagram</h3>
+                <p className="text-gray-600 text-sm">
                   <a
                     href="https://instagram.com/Lufertecnologia"
                     target="_blank"
-                    className="hover:text-primary transition-colors"
+                    className="hover:text-navy transition-colors"
                     rel="noreferrer"
                   >
                     @Lufertecnologia
                   </a>
                 </p>
               </div>
-            </AnimatedSection>
-            <AnimatedSection
-              delay={200}
-              animation="slide-left"
-              className="flex items-center gap-4 hover-lift p-4 rounded-lg transition-all duration-300"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                <Youtube className="h-6 w-6 text-primary" />
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={200} animation="slide-right" className="card-minimal">
+            <div className="flex items-center gap-4">
+              <div className="icon-box-primary">
+                <Youtube className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-lg font-normal">YouTube</h3>
-                <p className="text-muted-foreground font-light">
+                <h3 className="text-lg font-light text-navy">YouTube</h3>
+                <p className="text-gray-600 text-sm">
                   <a
                     href="https://youtube.com/Lufertecnologia"
                     target="_blank"
-                    className="hover:text-primary transition-colors"
+                    className="hover:text-navy transition-colors"
                     rel="noreferrer"
                   >
                     Lufertecnologia
                   </a>
                 </p>
               </div>
-            </AnimatedSection>
-            <AnimatedSection
-              delay={300}
-              animation="scale"
-              className="rounded-xl border bg-background p-6 shadow-lg hover-lift"
-            >
-              <div className="space-y-4 text-center">
-                <h3 className="text-xl font-normal">¿Preferís una reunión?</h3>
-                <p className="text-muted-foreground font-light">
-                  Reservá una reunión informativa gratuita para conocer cómo podemos ayudarte.
-                </p>
-                <Button asChild size="lg" className="w-full cta-button font-normal">
-                  <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2 justify-center">
-                    Reservá tu reunión ahora
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-            </AnimatedSection>
-          </div>
+            </div>
+          </AnimatedSection>
         </div>
+
+        <AnimatedSection delay={300} animation="scale" className="card-minimal text-center">
+          <div className="space-y-6">
+            <div className="icon-box-primary mx-auto">
+              <Calendar className="h-5 w-5" />
+            </div>
+
+            <h3 className="text-xl font-light text-navy">¿Preferís una reunión?</h3>
+
+            <p className="text-gray-600 text-sm max-w-md mx-auto">
+              Reservá una reunión informativa gratuita para conocer cómo podemos ayudarte.
+            </p>
+
+            <Button asChild className="btn-minimal text-white">
+              <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
+                Reservá tu reunión ahora
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   )
@@ -745,38 +630,42 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="w-full border-t py-6 md:py-0 bg-gray-50">
-      <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-        <div className="flex items-center gap-2">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%207-VEkkzzHjmIagP4YOM97SRcuzyyXdcF.png"
-            alt="Logo de Lufer Tecnología"
-            width={32}
-            height={32}
-            className="hover-scale"
-          />
-          <span className="text-lg font-normal">Lufer Tecnología</span>
-        </div>
-        <p className="text-center text-sm leading-loose text-muted-foreground md:text-left font-light">
-          © 2023 Lufer Tecnología. Todos los derechos reservados.
-        </p>
-        <div className="flex items-center gap-4">
-          <Link
-            href="https://instagram.com/Lufertecnologia"
-            target="_blank"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <Instagram className="h-5 w-5" />
-            <span className="sr-only">Instagram</span>
-          </Link>
-          <Link
-            href="https://www.youtube.com/@LuferTecnologia"
-            target="_blank"
-            className="text-muted-foreground hover:text-primary transition-colors"
-          >
-            <Youtube className="h-5 w-5" />
-            <span className="sr-only">YouTube</span>
-          </Link>
+    <footer className="w-full border-t py-8 bg-white">
+      <div className="container">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%207-VEkkzzHjmIagP4YOM97SRcuzyyXdcF.png"
+              alt="Logo de Lufer Tecnología"
+              width={32}
+              height={32}
+              className="hover-translate"
+            />
+            <span className="text-lg font-light text-navy">Lufer Tecnología</span>
+          </div>
+
+          <p className="text-center text-gray-500 text-sm md:text-left font-light">
+            © 2023 Lufer Tecnología. Todos los derechos reservados.
+          </p>
+
+          <div className="flex items-center gap-4">
+            <Link
+              href="https://instagram.com/Lufertecnologia"
+              target="_blank"
+              className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+            >
+              <Instagram className="h-4 w-4 text-navy" />
+              <span className="sr-only">Instagram</span>
+            </Link>
+            <Link
+              href="https://www.youtube.com/@LuferTecnologia"
+              target="_blank"
+              className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+            >
+              <Youtube className="h-4 w-4 text-navy" />
+              <span className="sr-only">YouTube</span>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

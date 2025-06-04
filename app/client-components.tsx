@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ArrowUp } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 // URL para todos los botones CTA
 const CALENDAR_URL = "https://calendly.com/lufer-tecnologia/30min"
@@ -34,7 +35,7 @@ export function MobileNav() {
         variant="ghost"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
-        className="transition-transform duration-200 hover:scale-110"
+        className="transition-transform duration-200"
       >
         {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         <span className="sr-only">Alternar menú</span>
@@ -44,13 +45,19 @@ export function MobileNav() {
         <div className="fixed inset-0 top-16 z-50 bg-white shadow-lg" style={{ backgroundColor: "white" }}>
           <div className="flex justify-between items-center p-4 border-b">
             <div className="flex items-center gap-2">
-              <span className="text-xl font-normal">Lufer Tecnología</span>
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%207-VEkkzzHjmIagP4YOM97SRcuzyyXdcF.png"
+                alt="Logo de Lufer Tecnología"
+                width={32}
+                height={32}
+              />
+              <span className="text-lg font-light">Lufer Tecnología</span>
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(false)}
-              className="transition-transform duration-200 hover:scale-110"
+              className="transition-transform duration-200"
             >
               <X className="h-5 w-5" />
               <span className="sr-only">Cerrar menú</span>
@@ -58,49 +65,42 @@ export function MobileNav() {
           </div>
           <nav className="flex flex-col gap-6 p-6">
             <Link
+              href="#beneficios"
+              className="text-lg font-light text-gray-600 hover:text-navy transition-colors"
+              onClick={handleLinkClick}
+            >
+              Beneficios
+            </Link>
+            <Link
               href="#problemas"
-              className="text-lg font-light hover:text-primary transition-colors"
+              className="text-lg font-light text-gray-600 hover:text-navy transition-colors"
               onClick={handleLinkClick}
             >
               Problemas
             </Link>
             <Link
               href="#para-quien"
-              className="text-lg font-light hover:text-primary transition-colors"
+              className="text-lg font-light text-gray-600 hover:text-navy transition-colors"
               onClick={handleLinkClick}
             >
               ¿Para quién?
             </Link>
             <Link
-              href="#beneficios"
-              className="text-lg font-light hover:text-primary transition-colors"
-              onClick={handleLinkClick}
-            >
-              Beneficios
-            </Link>
-            <Link
               href="#dashboard"
-              className="text-lg font-light hover:text-primary transition-colors"
+              className="text-lg font-light text-gray-600 hover:text-navy transition-colors"
               onClick={handleLinkClick}
             >
               Dashboard
             </Link>
             <Link
-              href="#precios"
-              className="text-lg font-light hover:text-primary transition-colors"
-              onClick={handleLinkClick}
-            >
-              Precios
-            </Link>
-            <Link
               href="#contacto"
-              className="text-lg font-light hover:text-primary transition-colors"
+              className="text-lg font-light text-gray-600 hover:text-navy transition-colors"
               onClick={handleLinkClick}
             >
               Contacto
             </Link>
             <div className="flex flex-col gap-2 mt-4">
-              <Button asChild onClick={handleLinkClick} className="cta-button font-light">
+              <Button asChild onClick={handleLinkClick} className="btn-minimal text-white">
                 <Link href={CALENDAR_URL} target="_blank">
                   Reservá tu reunión ahora
                 </Link>
@@ -148,11 +148,9 @@ export function AnimatedSection({ children, className, delay = 0, animation = "f
   const getAnimationClass = () => {
     switch (animation) {
       case "slide-right":
-        return "animate-slide-in-right"
+        return "animate-slide-right"
       case "slide-left":
-        return "animate-slide-in-left"
-      case "scale":
-        return "animate-scale-in"
+        return "animate-slide-left"
       default:
         return "animate-fade-in"
     }
@@ -161,7 +159,7 @@ export function AnimatedSection({ children, className, delay = 0, animation = "f
   return (
     <div
       ref={ref}
-      className={`transition-opacity duration-700 ${isVisible ? `opacity-100 ${getAnimationClass()}` : "opacity-0"} ${className || ""}`}
+      className={`transition-opacity duration-500 ${isVisible ? `opacity-100 ${getAnimationClass()}` : "opacity-0"} ${className || ""}`}
       style={{
         transitionDelay: `${delay}ms`,
       }}
@@ -199,10 +197,10 @@ export function ScrollToTop() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-primary text-white shadow-lg transition-all duration-300 hover:scale-110"
+          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-navy text-white shadow-sm transition-all duration-300 hover:shadow-md"
           aria-label="Volver arriba"
         >
-          <ArrowUp className="h-5 w-5" />
+          <ArrowUp className="h-4 w-4" />
         </button>
       )}
     </>

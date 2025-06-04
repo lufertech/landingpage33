@@ -53,20 +53,16 @@ export function FeaturesGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {features.map((feature, index) => (
-        <Card
-          key={index}
-          className="border-0 shadow-sm hover:shadow-md transition-all duration-300 bg-white/90 backdrop-blur-sm group overflow-hidden"
-        >
+        <Card key={index} className="card-minimal">
           <CardHeader className="pb-2">
-            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-              <feature.icon className="h-5 w-5 text-primary" />
+            <div className="icon-box-primary mb-4">
+              <feature.icon className="h-5 w-5" />
             </div>
-            <CardTitle className="text-lg font-normal">{feature.title}</CardTitle>
+            <CardTitle className="text-lg font-light text-navy">{feature.title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <CardDescription className="text-sm font-light">{feature.description}</CardDescription>
+            <CardDescription className="text-gray-600 text-sm font-light">{feature.description}</CardDescription>
           </CardContent>
-          <div className="h-1 w-0 bg-primary group-hover:w-full transition-all duration-500 ease-out"></div>
         </Card>
       ))}
     </div>
