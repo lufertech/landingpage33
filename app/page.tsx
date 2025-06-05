@@ -120,7 +120,7 @@ function HeroSection() {
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1fr_700px] lg:gap-0 xl:grid-cols-[1fr_800px] items-end min-h-[80vh]">
+        <div className="grid gap-12 grid-cols-1 lg:grid-cols-[1fr_1fr] lg:gap-0 xl:grid-cols-[1fr_1fr] items-end min-h-[90vh]">
           <AnimatedSection animation="slide-left" className="flex flex-col justify-center space-y-8 pb-16">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/90 text-sm font-light">
@@ -160,14 +160,17 @@ function HeroSection() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection animation="slide-right" delay={300} className="flex items-end justify-end h-full">
-            <div className="relative h-full flex items-end">
+          <AnimatedSection animation="slide-right" delay={300} className="flex items-end justify-center h-full">
+            <div
+              className="relative h-full flex items-end"
+              style={{ transform: "scale(2)", transformOrigin: "center bottom" }}
+            >
               <Image
                 src="/images/whatsapp-phone-clean.png"
-                width={800}
-                height={1200}
+                width={2000}
+                height={3000}
                 alt="Chatbot de Lufer Tecnología en WhatsApp"
-                className="w-full max-w-[800px] h-auto object-contain"
+                className="w-full max-w-[2000px] h-auto object-contain"
                 priority
                 style={{ marginBottom: "-5px" }}
               />
