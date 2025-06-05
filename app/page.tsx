@@ -163,7 +163,7 @@ function HeroSection() {
           <AnimatedSection animation="slide-right" delay={300} className="flex items-end justify-center h-full">
             <div
               className="relative h-full flex items-end"
-              style={{ transform: "scale(2)", transformOrigin: "center bottom" }}
+              style={{ transform: "scale(1.5)", transformOrigin: "center bottom" }}
             >
               <Image
                 src="/images/whatsapp-phone-clean.png"
