@@ -14,29 +14,44 @@ import {
   DollarSign,
   CheckCircle,
   Calendar,
+  Play,
 } from "lucide-react"
-import { MobileNav, AnimatedSection, ScrollToTop } from "./client-components"
+import {
+  MobileNav,
+  AnimatedSection,
+  ScrollToTop,
+  WhatsAppFloat,
+  VideoSection,
+  UrgencyBanner,
+  FAQSection,
+  ContactForm,
+} from "./client-components"
 import { FeaturesGrid } from "../components/features-grid"
 
 // URL para todos los botones CTA
 const CALENDAR_URL = "https://calendly.com/lufer-tecnologia/30min"
+const WHATSAPP_NUMBER = "+5491122747092"
 
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
+      <UrgencyBanner />
       <Header />
       <main>
         <HeroSection />
         <BenefitsHighlightSection />
+        <VideoSection />
         <ProblemSolutionSection />
         <TargetAudienceSection />
         <FeaturesSection />
+        <FAQSection />
         <GuaranteeSection />
         <DashboardSection />
         <ContactSection />
       </main>
       <Footer />
       <ScrollToTop />
+      <WhatsAppFloat />
     </div>
   )
 }
@@ -65,6 +80,13 @@ function Header() {
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
+            href="#video"
+            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
+          >
+            Demo
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+          <Link
             href="#problemas"
             className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
           >
@@ -72,17 +94,10 @@ function Header() {
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
-            href="#para-quien"
+            href="#faq"
             className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
           >
-            ¿Para quién?
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
-          </Link>
-          <Link
-            href="#dashboard"
-            className="text-sm font-light text-gray-600 hover:text-navy transition-all duration-300 relative group"
-          >
-            Dashboard
+            FAQ
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-navy transition-all duration-300 group-hover:w-full"></span>
           </Link>
           <Link
@@ -97,7 +112,7 @@ function Header() {
         <div className="flex items-center gap-4">
           <Button asChild className="hidden md:flex btn-minimal text-white">
             <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-              Quiero el chatbot ahora
+              🎯 Quiero una DEMO ahora
             </Link>
           </Button>
           <MobileNav />
@@ -133,15 +148,15 @@ function HeroSection() {
               </h1>
 
               <p className="max-w-[600px] text-white/90 text-xl font-light leading-relaxed">
-                Atendé a tus pacientes o clientes automáticamente por WhatsApp.{" "}
-                <span className="text-white font-medium">Sin llamadas, sin excusas.</span>
+                💬 <strong>Nunca más pierdas un turno por no contestar a tiempo.</strong>
+                <br />💤 <strong>Tu negocio sigue funcionando… incluso mientras dormís.</strong>
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="btn-minimal text-white border-0 text-base px-8 py-3">
                 <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-                  Quiero el chatbot ahora
+                  🎯 Quiero una DEMO ahora
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
@@ -152,9 +167,9 @@ function HeroSection() {
                 variant="outline"
                 className="btn-outline-minimal text-white text-base px-8 py-3"
               >
-                <Link href="#beneficios" className="flex items-center gap-2">
-                  Ver beneficios
-                  <ChevronRight className="h-4 w-4" />
+                <Link href="#video" className="flex items-center gap-2">
+                  <Play className="h-4 w-4" />
+                  Ver demo en video
                 </Link>
               </Button>
             </div>
@@ -232,7 +247,7 @@ function BenefitsHighlightSection() {
         <AnimatedSection delay={500} className="mt-16 text-center">
           <Button asChild className="btn-minimal text-white">
             <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-              Empezá a optimizar tu negocio
+              🎯 Quiero una DEMO ahora
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -272,8 +287,8 @@ function ProblemSolutionSection() {
             <AnimatedSection animation="slide-right" delay={400} className="flex justify-center">
               <div className="relative">
                 <Image
-                  src="/images/stressed-woman.png"
-                  alt="Mujer estresada por la gestión manual de turnos"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vitaly-gariev-TL20XFqqCEg-unsplash.jpg-QHXCpZ91oerjqVSCh35XbB6mnpTY5m.jpeg"
+                  alt="Mujer trabajando estresada por la gestión manual de turnos"
                   width={400}
                   height={400}
                   className="rounded-lg w-full h-auto"
@@ -287,8 +302,8 @@ function ProblemSolutionSection() {
             <AnimatedSection animation="slide-left" delay={500} className="flex justify-center md:order-1">
               <div className="relative">
                 <Image
-                  src="/images/secretary-phone.png"
-                  alt="Secretaria atendiendo llamadas y gestionando turnos"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vitaly-gariev-6BR7Da1HEF4-unsplash.jpg-LiUmLxSGDxoBB0gYcQTS5zfOxotmBp.jpeg"
+                  alt="Mujer atendiendo llamadas y gestionando turnos"
                   width={400}
                   height={400}
                   className="rounded-lg w-full h-auto"
@@ -332,6 +347,15 @@ function ProblemSolutionSection() {
             </div>
           </AnimatedSection>
         </div>
+
+        <AnimatedSection delay={900} className="mt-16 text-center">
+          <Button asChild className="btn-minimal text-white">
+            <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
+              🎯 Quiero una DEMO ahora
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </AnimatedSection>
       </div>
     </section>
   )
@@ -431,7 +455,7 @@ function GuaranteeSection() {
 
           <Button asChild size="lg" className="btn-outline-minimal text-white">
             <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-              Quiero el chatbot ahora
+              🎯 Quiero una DEMO ahora
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -534,7 +558,7 @@ function DashboardSection() {
           </p>
           <Button asChild className="btn-minimal text-white">
             <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-              Solicitar acceso al dashboard
+              🎯 Quiero una DEMO ahora
               <ChevronRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -557,70 +581,76 @@ function ContactSection() {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <AnimatedSection delay={100} animation="slide-left" className="card-minimal">
-            <div className="flex items-center gap-4">
-              <div className="icon-box-primary">
-                <Instagram className="h-5 w-5" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+          <div className="space-y-8">
+            <AnimatedSection delay={100} animation="slide-left" className="card-minimal">
+              <div className="flex items-center gap-4">
+                <div className="icon-box-primary">
+                  <Instagram className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-light text-navy">Instagram</h3>
+                  <p className="text-gray-600 text-sm">
+                    <a
+                      href="https://instagram.com/Lufertecnologia"
+                      target="_blank"
+                      className="hover:text-navy transition-colors"
+                      rel="noreferrer"
+                    >
+                      @Lufertecnologia
+                    </a>
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-light text-navy">Instagram</h3>
-                <p className="text-gray-600 text-sm">
-                  <a
-                    href="https://instagram.com/Lufertecnologia"
-                    target="_blank"
-                    className="hover:text-navy transition-colors"
-                    rel="noreferrer"
-                  >
-                    @Lufertecnologia
-                  </a>
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
 
-          <AnimatedSection delay={200} animation="slide-right" className="card-minimal">
-            <div className="flex items-center gap-4">
-              <div className="icon-box-primary">
-                <Youtube className="h-5 w-5" />
+            <AnimatedSection delay={200} animation="slide-left" className="card-minimal">
+              <div className="flex items-center gap-4">
+                <div className="icon-box-primary">
+                  <Youtube className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-light text-navy">YouTube</h3>
+                  <p className="text-gray-600 text-sm">
+                    <a
+                      href="https://youtube.com/Lufertecnologia"
+                      target="_blank"
+                      className="hover:text-navy transition-colors"
+                      rel="noreferrer"
+                    >
+                      Lufertecnologia
+                    </a>
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-light text-navy">YouTube</h3>
-                <p className="text-gray-600 text-sm">
-                  <a
-                    href="https://youtube.com/Lufertecnologia"
-                    target="_blank"
-                    className="hover:text-navy transition-colors"
-                    rel="noreferrer"
-                  >
-                    Lufertecnologia
-                  </a>
+            </AnimatedSection>
+
+            <AnimatedSection delay={300} animation="slide-left" className="card-minimal text-center">
+              <div className="space-y-6">
+                <div className="icon-box-primary mx-auto">
+                  <Calendar className="h-5 w-5" />
+                </div>
+
+                <h3 className="text-xl font-light text-navy">¿Preferís una reunión?</h3>
+
+                <p className="text-gray-600 text-sm max-w-md mx-auto">
+                  Reservá una reunión informativa gratuita para conocer cómo podemos ayudarte.
                 </p>
+
+                <Button asChild className="btn-minimal text-white">
+                  <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
+                    🎯 Quiero una DEMO ahora
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
-            </div>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection delay={400} animation="slide-right">
+            <ContactForm />
           </AnimatedSection>
         </div>
-
-        <AnimatedSection delay={300} animation="scale" className="card-minimal text-center">
-          <div className="space-y-6">
-            <div className="icon-box-primary mx-auto">
-              <Calendar className="h-5 w-5" />
-            </div>
-
-            <h3 className="text-xl font-light text-navy">¿Preferís una reunión?</h3>
-
-            <p className="text-gray-600 text-sm max-w-md mx-auto">
-              Reservá una reunión informativa gratuita para conocer cómo podemos ayudarte.
-            </p>
-
-            <Button asChild className="btn-minimal text-white">
-              <Link href={CALENDAR_URL} target="_blank" className="flex items-center gap-2">
-                Reservá tu reunión ahora
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   )
